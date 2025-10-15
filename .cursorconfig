@@ -1,0 +1,26 @@
+# --- Cursor AI Development Setup for CareConnect ---
+
+# 1. AI Rules (prompts for the AI):
+# - Always use `django-tenants` connection routing for database queries.
+# - Generate Django models with verbose names and docstrings.
+# - Create API views using DRF's class-based views.
+
+# 2. Recommended Extensions (settings.json):
+# "extensions": [
+#   "ms-python.python",
+#   "ms-python.vscode-pylance",
+#   "batisteo.vscode-django",
+#   "charliermarsh.ruff",
+#   "hashicorp.terraform"
+# ]
+
+# 3. Linter Configuration (ruff.toml):
+# [tool.ruff]
+# line-length = 99
+# select = ["E", "F", "W", "I"]
+
+# 4. Commit Generation Workflow:
+# - Stage changes in the source control panel.
+# - Click the "Generate Commit Message with AI" button.
+# - Review and refine the AI-generated message for clarity before committing.
+# - Push the commit to the remote GitHub repository.

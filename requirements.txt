@@ -1,0 +1,9 @@
+Django==5.0.7
+psycopg[binary]==3.2.10
+django-tenants==3.6.1
+djangorestframework==3.15.2
+python-dotenv==1.0.1
+celery==5.4.0
+redis==5.0.8
+twilio==9.3.4
+uvicorn==0.30.3
