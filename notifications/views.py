@@ -1,10 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework import generics, filters
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.db import transaction
 from .models import SMSMessage
+from .serializers import SMSMessageSerializer
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -36,3 +38,11 @@ class TwilioWebhookView(APIView):
                 pass
 
         return Response({'ok': True})
+
+
+class SMSMessageListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = SMSMessageSerializer
+    queryset = SMSMessage.objects.all().order_by('-created_at')
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['to_number', 'message_sid', 'status']

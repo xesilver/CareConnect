@@ -171,6 +171,12 @@ CELERY_BROKER_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
 CELERY_RESULT_BACKEND = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
 CELERY_TASK_ALWAYS_EAGER = os.getenv('CELERY_TASK_ALWAYS_EAGER', 'false').lower() == 'true'
 CELERY_TIMEZONE = os.getenv('TIME_ZONE', 'UTC')
+CELERY_BEAT_SCHEDULE = {
+    'queue-24h-reminders-every-15-min': {
+        'task': 'notifications.tasks.queue_24h_reminders_task',
+        'schedule': 15 * 60,  # seconds
+    },
+}
 
 # Twilio
 TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID', '')
