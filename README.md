@@ -48,3 +48,7 @@ See `.cursorconfig` for prompts, linter, and commit generation workflow.
 
 ## License
 MIT
+
+## Documentation
+
+- See `docs/CARECONNECT_OVERVIEW.md` for the platform purpose, features, architecture, APIs, and local setup flow.
