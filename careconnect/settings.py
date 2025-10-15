@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import sys
 import os
 from dotenv import load_dotenv
 
@@ -18,7 +19,8 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-load_dotenv()
+env_file = (BASE_DIR / "config" / "test.env") if ("test" in sys.argv) else (BASE_DIR / "config" / "local.env")
+load_dotenv(dotenv_path=env_file if env_file.exists() else None)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -37,10 +39,6 @@ ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split('
 SHARED_APPS = [
     'django_tenants',
     'django.contrib.contenttypes',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
     'tenants',
 ]
@@ -51,6 +49,7 @@ TENANT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
     'rest_framework',
     'rest_framework.authtoken',
     'core',
